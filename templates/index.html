@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Homepage</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{url_for('static', filename = 'css/bootstrap.min.css')}}">
+    <!-- <link rel="stylesheet" href="{{url_for ('static', filename ='css/style.css') }}"> -->
+    <link rel="stylesheet" href="{{url_for('static', filename = 'myfont/css/all.min.css')}}">
+    <!-- Custom CSS for mobile logo styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mobile-logo-styles.css') }}">
+    
+
+    <!-- Bootstrap JS -->
+    <script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+
+    <style>
+
+#videoContainer {
+    position: relative;
+    width: 100%;
+    overflow-y: hidden;
+    margin: 0 auto;
+    margin-top: 10px;
+    padding-left: 0; /* Remove left padding */
+    padding-right: 0; /* Remove right padding */
+}
+
+.miniplayerIcon {
+    width:"560"; 
+    height:"315";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    color: #817979;
+    font-size: 24px;
+    z-index: 1;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.scrollIcon {
+    width: 24px;
+    height: 24px;
+    position:absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #817979;
+    font-size: 24px;
+    z-index: 2;
+}
+
+.scrollLeftIcon{
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #817979;
+    font-size: 24px;
+    z-index: 2;
+}
+
+/* Initially hide mobile logo */
+.mobile-logo {
+    display: none;
+}
+
+/* Show mobile logo and hide desktop logo on screens up to 768px width */
+@media (max-width: 768px) {
+    .desktop-logo {
+        display: none; /* Hide desktop logo on mobile */
+    }
+    .mobile-logo {
+        display: block; /* Show mobile logo on mobile */
+        width: 100%;
+        height: auto; /* Maintain aspect ratio */
+        margin-top: 10px; /* Apply margin-top */
+        border-radius: 10px; /* Apply border radius */
+    }
+}
+
+/* Add margin-top for desktop logo */
+.desktop-logo {
+    margin-top: 10px; /* Adjust the margin-top value as needed */
+    border-radius: 10px;
+}
+
+iframe.miniplayer {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 560px !important; /* Adjusted width */
+    height: 180px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 3;
+    margin-top: 10px;
+}
+
+.closeIcon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    color: #817979;
+    font-size: 24px;
+    display: none; /* Hide close icon by default */
+    z-index: 2;
+}
+
+
+
+.video-row {
+    position: relative; /* Ensure relative positioning */
+    height: 350px; /* Set a fixed height for each row */
+    white-space: nowrap; /* Prevent wrapping of video columns */
+    margin-top: 360px; /* Adjusted margin to move below live video */
+    margin-bottom: 10px; /* Reduced bottom margin */
+}
+
+.video-column {
+    width: calc(100% / 3 - 20px); /* Adjusted width to occupy one-third of the container's width */
+    display: inline-block; /* Display video columns inline */
+    margin-right: 0; /* Remove margin between video columns */
+    margin-bottom: 20px; /* Adjusted bottom margin */
+    position: relative;
+    vertical-align: top; /* Align video columns to the top */
+    
+}
+
+.video-column iframe {
+    width: 100%;
+    height: 200px; /* Adjust height as needed */
+    display: block;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+@media (max-width: 768px) {
+    #videoContainer {
+        max-width: 90%;
+    }
+}
+
+
+
+.video-title {
+    color: rgb(214, 26, 26); /* Set text color to white */
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+    font-weight: 500;
+    margin: 0; /* Remove default margin */
+    overflow: hidden; /* Hide any overflowing content */
+    white-space: nowrap; /* Prevent text from wrapping */
+    text-overflow: ellipsis; /* Add ellipsis (...) for overflow */
+}
+.channel-name,
+.metadata {
+    color: white; /* Set text color to white */
+    font-size: 1.4rem;
+    margin-top: 5px;
+    margin-bottom: 5px; /* Add some bottom margin for spacing */
+}
+
+.miniplayer-description {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 560px !important; /* Adjusted width */
+    height: 180px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 3;
+    margin-top: 10px;
+}
+
+.miniplayer-container {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 560px;
+    z-index: 3;
+}
+
+.miniplayer-container iframe {
+    width: 100% !important;
+    height: 180px;
+}
+
+.miniplayer-container .video-description {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: calc(100% - 10px);
+}
+
+.logo-settings-icon {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 30px;
+    right: 40px; /* Adjust the position as needed */
+    cursor: pointer;
+    color: white;
+    font-size: 24px;
+    z-index: 1;
+}
+
+#liveVideoContainer {
+    position: absolute;
+    width: 100%;
+    z-index: 9999; /* Set a high z-index to ensure it appears above other content */
+}
+
+#videoFrame {
+    width: 100%;
+    height: 315px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+.logo-settings-icon {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 30px;
+    right: 40px; /* Adjust the position as needed */
+    cursor: pointer;
+    color: white;
+    font-size: 24px;
+    z-index: 1;
+}
+
+
+    </style>
+
+</head>
+<body>
+    <header>
+        <div class="container-fluid">
+            <!-- Desktop logo -->
+            <img class="desktop-logo" src="{{ url_for('static', filename='images/muhieddeentv.png') }}" alt="Desktop Logo">
+            <!-- Mobile logo -->
+            <img class="mobile-logo" src="{{ url_for('static', filename='images/muhieddeentv.png') }}" alt="Mobile Logo">
+            <!-- <i class="fas fa-ellipsis-v logo-settings-icon" onclick="openUploadModal()"></i> -->
+        </div>  
+    </header>
+        <!-- Modal for uploading image -->
+    <div id="imageUploadModal" class="modal">
+        <div class="modal-content"> 
+            <span class="close" onclick="closeUploadModal()">&times;</span>
+            <h2>Upload Logo</h2>
+            <input type="file" id="logoInput" accept="image/*">
+        </div>
+    </div>
+    <main>
+        <div id="liveVideoContainer" class="container-fluid">
+            <iframe id="videoFrame" width="100%" height="315" src="https://player.livepush.io/emvGD8NbsScRE?&autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay;" allowfullscreen></iframe>
+        </div>
+        <div class="container-fluid">
+            <div id="videoContainer">
+                <!-- Live Video -->
+                <!-- <iframe id="videoFrame" width="100%" height="315" src="https://player.livepush.io/emvGD8NbsScRE?&autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay;" allowfullscreen></iframe> -->
+
+                <!-- Video Row 1 -->
+                <div class="video-row" id="videoRow1">
+                    <h2>Songs</h2>
+                    <div class="video-column" onmouseover="playVideo('videoFrame1')" onmouseout="pauseVideo('videoFrame1')">
+                        <div class="video-container">
+                            <iframe id="videoFrame1" width="560" height="315" src="https://www.youtube.com/embed/Od3bdE3ymQY?autoplay=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <i class="fas fa-expand-alt miniplayerIcon" onclick="toggleMiniplayer('videoFrame1')" data-frame-id="videoFrame1"></i>
+                            <i class="fas fa-times-circle closeIcon" onclick="exitPiP('videoFrame1')" data-frame-id="videoFrame1"></i>
+                    
+                            <div class="video-description">
+                                <h3 class="video-title">Ya Ali Moula Ali / Islamic Sufi Song / Nagore Hafil Qadiri / Nagori Brotherz</h3>
+                                <p class="channel-name">Nagore Hafil Sahib Qadiri</p>
+                                <p class="metadata">52,626 views • 5 years ago • 6 minutes, 6 seconds</p>
+                                <!-- Add more description elements as needed -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="video-column">
+                        <iframe id="videoFrame2" width="560" height="315" src="https://www.youtube.com/embed/nTGRsKK7f3A" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <i class="fas fa-expand-alt miniplayerIcon" onclick="toggleMiniplayer('videoFrame2')"></i>
+                        <i class="fas fa-times-circle closeIcon" onclick="exitPiP('videoFrame2')"></i>
+                    </div>
+
+                    <div class="video-column">
+                        <iframe id="videoFrame3" width="560" height="315" src="https://www.youtube.com/embed/HsPrpyyBbVE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <i class="fas fa-expand-alt miniplayerIcon" onclick="toggleMiniplayer('videoFrame3')"></i>
+                        <i class="fas fa-times-circle closeIcon" onclick="exitPiP('videoFrame3')"></i>
+                    </div>
+                    <i class="fas fa-chevron-right scrollIcon" onclick="toggleAdditionalVideos('right', 'videoRow1')"></i>
+                    <i class="fas fa-chevron-left scrollLeftIcon" onclick="toggleAdditionalVideos('left', 'videoRow1')"></i>
+
+                    <div class="video-column">
+                        <iframe id="videoFrame10" width="560" height="315" src="https://www.youtube.com/embed/HsPrpyyBbVE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <i class="fas fa-expand-alt miniplayerIcon" onclick="toggleMiniplayer('videoFrame10')"></i>
+                        <i class="fas fa-times-circle closeIcon" onclick="exitPiP('videoFrame10')"></i>
+                    </div>
+
+                   
+
+                    <div class="video-column">
+                        <iframe id="videoFrame11" width="560" height="315" src="https://www.youtube.com/embed/HsPrpyyBbVE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <i class="fas fa-expand-alt miniplayerIcon" onclick="toggleMiniplayer('videoFrame11')"></i>
+                        <i class="fas fa-times-circle closeIcon" onclick="exitPiP('videoFrame11')"></i>
+                    </div>
+
+                    <div class="video-column">
+                        <iframe id="videoFrame12" width="560" height="315" src="https://www.youtube.com/embed/HsPrpyyBbVE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <i class="fas fa-expand-alt miniplayerIcon" onclick="toggleMiniplayer('videoFrame12')"></i>
+                        <i class="fas fa-times-circle closeIcon" onclick="exitPiP('videoFrame12')"></i>
+                    </div>
+                    
+                    
+                </div>
+                
+                <div class="video-row">
+                    <h2>Movies</h2>
+                    <div class="video-column">
+                        <iframe id="videoFrame4" width="560" height="315" src="https://www.youtube.com/embed/sfJOJ3jGisc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <i class="fas fa-expand-alt miniplayerIcon" onclick="toggleMiniplayer('videoFrame4')"></i>
+                        <i class="fas fa-times-circle closeIcon" onclick="exitPiP('videoFrame4')"></i>
+                    </div>
+                    <div class="video-column">
+                        <iframe id="videoFrame5" width="560" height="315" src="https://www.youtube.com/embed/TIuDwFLhg9k" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <i class="fas fa-expand-alt miniplayerIcon" onclick="toggleMiniplayer('videoFrame5')"></i>
+                        <i class="fas fa-times-circle closeIcon" onclick="exitPiP('videoFrame5')"></i>
+                    </div>
+
+                    <div class="video-column">
+                        <iframe id="videoFrame6" width="560" height="315" src="https://www.youtube.com/embed/GvpDPTOalQw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <i class="fas fa-expand-alt miniplayerIcon" onclick="toggleMiniplayer('videoFrame6')"></i>
+                        <i class="fas fa-times-circle closeIcon" onclick="exitPiP('videoFrame6')"></i>
+                    </div>
+                    <i class="fas fa-chevron-right scrollIcon" onclick="toggleAdditionalVideos('right', 'videoRow2')"></i>
+                    <i class="fas fa-chevron-left scrollLeftIcon" onclick="toggleAdditionalVideos('left', 'videoRow2')"></i>                   
+                    <!-- Add more video columns as needed -->
+                </div>
+
+                <div class="video-row">
+                    <h2>Comedy</h2>
+                    <div class="video-column">
+                        <iframe id="videoFrame7" width="560" height="315" src="https://www.youtube.com/embed/sfJOJ3jGisc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <i class="fas fa-expand-alt miniplayerIcon" onclick="toggleMiniplayer('videoFrame7')"></i>
+                        <i class="fas fa-times-circle closeIcon" onclick="exitPiP('videoFrame7')"></i>
+                    </div>
+                    <div class="video-column">
+                        <iframe id="videoFrame8" width="560" height="315" src="https://www.youtube.com/embed/TIuDwFLhg9k" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <i class="fas fa-expand-alt miniplayerIcon" onclick="toggleMiniplayer('videoFrame8')"></i>
+                        <i class="fas fa-times-circle closeIcon" onclick="exitPiP('videoFrame8')"></i>
+                    </div>
+
+                    <div class="video-column">
+                        <iframe id="videoFrame9" width="560" height="315" src="https://www.youtube.com/embed/GvpDPTOalQw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <i class="fas fa-expand-alt miniplayerIcon" onclick="toggleMiniplayer('videoFrame9')"></i>
+                        <i class="fas fa-times-circle closeIcon" onclick="exitPiP('videoFrame9')"></i>
+                    </div>
+                    <i class="fas fa-chevron-right scrollIcon" onclick="toggleAdditionalVideos('right', 'videoRow3')"></i>
+                    <i class="fas fa-chevron-left scrollLeftIcon" onclick="toggleAdditionalVideos('left', 'videoRow3')"></i>
+                    <!-- Add more video columns as needed -->
+                </div>
+            </div>
+        </div>
+        
+    </main>
+<script>
+// Function to play video
+function playVideo(frameId) {
+        if (currentVideoId !== frameId) {
+            pauseAllVideos(); // Pause all other videos
+            var video = document.getElementById(frameId);
+            video.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+            currentVideoId = frameId;
+            console.log("Playing video:", frameId);
+        }
+    }
+
+    // Function to pause video
+    function pauseVideo(frameId) {
+        var video = document.getElementById(frameId);
+        video.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+        console.log("Pausing video:", frameId);
+    }
+
+    // Function to pause all videos except the current one
+    function pauseAllVideos() {
+        var videoFrames = document.querySelectorAll('iframe');
+        videoFrames.forEach(function(video) {
+            var frameId = video.getAttribute('id');
+            if (frameId !== currentVideoId) {
+                pauseVideo(frameId);
+            }
+        });
+    }
+
+    // Add event listeners to detect mouse enter and leave events for video containers
+    var videoContainers = document.querySelectorAll('.video-column');
+    videoContainers.forEach(function(container) {
+        container.addEventListener('mouseenter', function() {
+            var frameId = this.querySelector('iframe').id;
+            playVideo(frameId);
+        });
+
+        container.addEventListener('mouseleave', function() {
+            var frameId = this.querySelector('iframe').id;
+            pauseVideo(frameId);
+        });
+    });
+// Function to toggle the miniplayer
+function toggleMiniplayer(frameId) {
+    console.log("Toggling miniplayer for frameId:", frameId);
+    var videoContainer = document.querySelector("#" + frameId).closest(".video-column");
+    var closeIcon = videoContainer.querySelector(".closeIcon");
+
+    // Check if the miniplayer is already active for this frameId
+    if (videoContainer.classList.contains('miniplayer-container')) {
+        console.log("Miniplayer already active for frameId:", frameId);
+        return; // Exit the function early
+    }
+
+    // Check if there's already an active miniplayer
+    if (currentVideoId && currentVideoId !== frameId) {
+        console.log("Exiting current miniplayer:", currentVideoId);
+        exitPiP(currentVideoId);
+    }
+
+    videoContainer.classList.toggle('miniplayer-container');
+    closeIcon.style.display = 'block';
+    currentVideoId = frameId;
+}
+
+// Function to exit PiP mode
+function exitPiP(frameId) {
+    console.log("Exiting PiP mode for frame:", frameId);
+    var videoContainer = document.querySelector("#" + frameId).closest(".video-column");
+    var videoFrame = videoContainer.querySelector("iframe");
+
+    // Stop the video when exiting PiP mode
+    var video = videoFrame.contentWindow; // Get the content window of the iframe
+    if (video && video.postMessage) {
+        video.postMessage('{"event":"command","func":"stopVideo","args":""}', '*');
+        console.log("Stopping video:", frameId);
+    }
+
+    // Remove the miniplayer-container class to exit PiP mode
+    videoContainer.classList.remove('miniplayer-container');
+    console.log("Exited PiP mode for frame:", frameId);
+
+    // Reset the currentVideoId variable
+    currentVideoId = null;
+}
+
+document.addEventListener('click', function(event) {
+    var target = event.target;
+    if (target.classList.contains('miniplayerIcon')) {
+        var frameId = target.getAttribute('data-frame-id');
+        toggleMiniplayer(frameId);
+    } else if (target.classList.contains('closeIcon')) {
+        var frameId = target.getAttribute('data-frame-id');
+        exitPiP(frameId);
+    }
+});
+
+// Add event listeners to detect mouse enter and leave events for video containers
+var videoContainers = document.querySelectorAll('.video-column');
+videoContainers.forEach(function(container) {
+    container.addEventListener('mouseenter', function() {
+        var frameId = this.querySelector('iframe').id;
+        playVideo(frameId);
+    });
+
+    container.addEventListener('mouseleave', function() {
+        var frameId = this.querySelector('iframe').id;
+        pauseVideo(frameId);
+    });
+});
+
+// Function to toggle additional videos horizontally
+function toggleAdditionalVideos(direction, rowId) {
+    var videoRow = document.getElementById(rowId);
+    var scrollAmount = 500; // Adjust scroll amount as needed
+
+    if (direction === 'right') {
+        videoRow.scrollLeft += scrollAmount;
+    } else if (direction === 'left') {
+        videoRow.scrollLeft -= scrollAmount;
+    }
+}
+
+// Function to open the upload modal
+function openUploadModal() {
+    document.getElementById('imageUploadModal').style.display = 'block';
+}
+
+// Function to close the upload modal
+function closeUploadModal() {
+    document.getElementById('imageUploadModal').style.display = 'none';
+}
+
+// Handle logo upload
+var logoInput = document.getElementById("logoInput");
+logoInput.addEventListener("change", function() {
+    var file = this.files[0];
+    var reader = new FileReader();
+    reader.onload = function(e) {
+        // Replace the logo with the uploaded image
+        document.querySelector("header img").src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+    closeUploadModal(); // Close the modal after image upload
+});
+</script>
+
+</body>
+</html>
