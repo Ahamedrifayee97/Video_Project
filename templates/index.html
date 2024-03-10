@@ -1,3 +1,6 @@
+
+<!-- //ADDED TITLE FOR EACH VIDEOS
+============================ -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +11,8 @@
     <link rel="stylesheet" href="{{url_for('static', filename = 'css/bootstrap.min.css')}}">
     <!-- <link rel="stylesheet" href="{{url_for ('static', filename ='css/style.css') }}"> -->
     <link rel="stylesheet" href="{{url_for('static', filename = 'myfont/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename = 'myfont/css/all.min.css')}}">
+    <link rel="icon" href="{{url_for('static', filename = 'images/Modern Design IOS Icon.ico')}}" type="image/x-icon">
     <!-- Custom CSS for mobile logo styles -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/mobile-logo-styles.css') }}">
     
@@ -170,10 +175,11 @@ iframe.miniplayer {
 
 
 .video-title {
-    color: rgb(214, 26, 26); /* Set text color to white */
+    color: rgb(0, 0, 0); /* Set text color to white */
     font-size: 1.6rem;
     line-height: 2.2rem;
-    font-weight: 500;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
     margin: 0; /* Remove default margin */
     overflow: hidden; /* Hide any overflowing content */
     white-space: nowrap; /* Prevent text from wrapping */
@@ -181,7 +187,13 @@ iframe.miniplayer {
 }
 .channel-name,
 .metadata {
-    color: white; /* Set text color to white */
+    color: rgb(0, 0, 0); /* Set text color to white */
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0; /* Remove default margin */
+    overflow: hidden; /* Hide any overflowing content */
+    white-space: nowrap; /* Prevent text from wrapping */
+    text-overflow: ellipsis; /* Add ellipsis (...) for overflow */
     font-size: 1.4rem;
     margin-top: 5px;
     margin-bottom: 5px; /* Add some bottom margin for spacing */
@@ -299,92 +311,231 @@ iframe.miniplayer {
                             <div class="video-description">
                                 <h3 class="video-title">Ya Ali Moula Ali / Islamic Sufi Song / Nagore Hafil Qadiri / Nagori Brotherz</h3>
                                 <p class="channel-name">Nagore Hafil Sahib Qadiri</p>
-                                <p class="metadata">52,626 views • 5 years ago • 6 minutes, 6 seconds</p>
+                                <p class="metadata">52,626 views</p>
                                 <!-- Add more description elements as needed -->
                             </div>
+
                         </div>
                     </div>
                     <div class="video-column">
                         <iframe id="videoFrame2" width="560" height="315" src="https://www.youtube.com/embed/nTGRsKK7f3A" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         <i class="fas fa-expand-alt miniplayerIcon" onclick="toggleMiniplayer('videoFrame2')"></i>
                         <i class="fas fa-times-circle closeIcon" onclick="exitPiP('videoFrame2')"></i>
+
+                        
+                        <div class="video-description">
+                                <h3 class="video-title">Sayyide Ahmad Kabeer - ஸெய்யிதே அஹ்மது கபீர் رضي الله عنه | Ahmad Salih Faheemi</h3>
+                                <p class="channel-name">Ahmad Salih Faheemi</p>
+                                <p class="metadata">133K views </p>
+                                <!-- Add more description elements as needed -->
+                            </div>
                     </div>
 
                     <div class="video-column">
                         <iframe id="videoFrame3" width="560" height="315" src="https://www.youtube.com/embed/HsPrpyyBbVE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         <i class="fas fa-expand-alt miniplayerIcon" onclick="toggleMiniplayer('videoFrame3')"></i>
                         <i class="fas fa-times-circle closeIcon" onclick="exitPiP('videoFrame3')"></i>
+                        <div class="video-description">
+                                <h3 class="video-title">Fathima Naayahi Munajat | ஃபாத்திமா رضی اللہ عنھا முனாஜாத் | DAFF VERSION | Ahmad Salih Faheemi</h3>
+                                <p class="channel-name">Ahmad Salih Faheemi</p>
+                                <p class="metadata">190,218 views </p>
+                                <!-- Add more description elements as needed -->
+                        </div>
+
                     </div>
                     <i class="fas fa-chevron-right scrollIcon" onclick="toggleAdditionalVideos('right', 'videoRow1')"></i>
                     <i class="fas fa-chevron-left scrollLeftIcon" onclick="toggleAdditionalVideos('left', 'videoRow1')"></i>
 
                     <div class="video-column">
-                        <iframe id="videoFrame10" width="560" height="315" src="https://www.youtube.com/embed/HsPrpyyBbVE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe id="videoFrame10" width="560" height="315" src="https://www.youtube.com/embed/0Mp6Dh0Vif8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         <i class="fas fa-expand-alt miniplayerIcon" onclick="toggleMiniplayer('videoFrame10')"></i>
                         <i class="fas fa-times-circle closeIcon" onclick="exitPiP('videoFrame10')"></i>
+                        <div class="video-description">
+                            <h3 class="video-title">Polla noayum | பொல்லா நோயும் நில்லாமல் ஓடும் உங்கள் நாமம் சொன்னால் போதும்</h3>
+                            <p class="channel-name">MuhieddeenTV</p>
+                            <p class="metadata">347K views </p>
+                            <!-- Add more description elements as needed -->
+                        </div>
+
                     </div>
 
                    
 
                     <div class="video-column">
-                        <iframe id="videoFrame11" width="560" height="315" src="https://www.youtube.com/embed/HsPrpyyBbVE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe id="videoFrame11" width="560" height="315" src="https://www.youtube.com/embed/ar-HPVKhFMc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         <i class="fas fa-expand-alt miniplayerIcon" onclick="toggleMiniplayer('videoFrame11')"></i>
                         <i class="fas fa-times-circle closeIcon" onclick="exitPiP('videoFrame11')"></i>
+                        <div class="video-description">
+                            <h3 class="video-title">நாகூர் ஷரீஃப் உரூஸ் காட்சிகள் | காதிரே கஞ்ஜசவாய் அரசரே ஷாஹுல் ஹமீதே | Qadir'rai Ganzasavay</h3>
+                            <p class="channel-name">MuhieddeenTV</p>
+                            <p class="metadata">5,690 views </p>
+                            <!-- Add more description elements as needed -->
+                        </div>
                     </div>
 
                     <div class="video-column">
-                        <iframe id="videoFrame12" width="560" height="315" src="https://www.youtube.com/embed/HsPrpyyBbVE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe id="videoFrame12" width="560" height="315" src="https://www.youtube.com/embed/GpeOYBagElE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         <i class="fas fa-expand-alt miniplayerIcon" onclick="toggleMiniplayer('videoFrame12')"></i>
                         <i class="fas fa-times-circle closeIcon" onclick="exitPiP('videoFrame12')"></i>
+                        <div class="video-description">
+                            <h3 class="video-title">செய்யிது இப்ராஹீம் ஷஹீதே - Sayyid Ibrahim Saheedae | Ahmad Salih Faheemi</h3>
+                            <p class="channel-name"> Ahmad Salih Faheemi</p>
+                            <p class="metadata">46,087 views </p>
+                            <!-- Add more description elements as needed -->
+                        </div>
                     </div>
                     
                     
                 </div>
                 
                 <div class="video-row">
-                    <h2>Movies</h2>
+                    <h2>Bayan</h2>
                     <div class="video-column">
-                        <iframe id="videoFrame4" width="560" height="315" src="https://www.youtube.com/embed/sfJOJ3jGisc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe id="videoFrame4" width="560" height="315" src="https://www.youtube.com/embed/zA3g4uzC1qU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         <i class="fas fa-expand-alt miniplayerIcon" onclick="toggleMiniplayer('videoFrame4')"></i>
                         <i class="fas fa-times-circle closeIcon" onclick="exitPiP('videoFrame4')"></i>
+                        <div class="video-description">
+                            <h3 class="video-title">Athiharangal walangappatta sarthar சகல அதிகாரங்கள் வழங்கப்பட்ட சர்தார் நபி</h3>
+                            <p class="channel-name"> MuhieddeenTV</p>
+                            <p class="metadata">217 views</p>
+                            <!-- Add more description elements as needed -->
+                        </div>
                     </div>
                     <div class="video-column">
-                        <iframe id="videoFrame5" width="560" height="315" src="https://www.youtube.com/embed/TIuDwFLhg9k" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe id="videoFrame5" width="560" height="315" src="https://www.youtube.com/embed/0gq5pMZg_NM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         <i class="fas fa-expand-alt miniplayerIcon" onclick="toggleMiniplayer('videoFrame5')"></i>
                         <i class="fas fa-times-circle closeIcon" onclick="exitPiP('videoFrame5')"></i>
+                        <div class="video-description">
+                            <h3 class="video-title">தாய் தந்தையின் சிறப்பு என்ன ? | பெற்றோரின் கன்னியம் காப்போம் | Petroar kanniyam kaappoam</h3>
+                            <p class="channel-name"> MuhieddeenTV</p>
+                            <p class="metadata">520 views</p>
+                            <!-- Add more description elements as needed -->
+                        </div>
                     </div>
 
                     <div class="video-column">
-                        <iframe id="videoFrame6" width="560" height="315" src="https://www.youtube.com/embed/GvpDPTOalQw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe id="videoFrame6" width="560" height="315" src="https://www.youtube.com/embed/icXhL_N9_Fg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         <i class="fas fa-expand-alt miniplayerIcon" onclick="toggleMiniplayer('videoFrame6')"></i>
                         <i class="fas fa-times-circle closeIcon" onclick="exitPiP('videoFrame6')"></i>
+                        <div class="video-description">
+                            <h3 class="video-title">walamoo explain உங்களில் ரஸூலுல்லாஹ் - ஆயத் ஒரு விளக்கம்</h3>
+                            <p class="channel-name"> MuhieddeenTV</p>
+                            <p class="metadata">557 views</p>
+                            <!-- Add more description elements as needed -->
+                        </div>
                     </div>
                     <i class="fas fa-chevron-right scrollIcon" onclick="toggleAdditionalVideos('right', 'videoRow2')"></i>
                     <i class="fas fa-chevron-left scrollLeftIcon" onclick="toggleAdditionalVideos('left', 'videoRow2')"></i>                   
                     <!-- Add more video columns as needed -->
+                    <div class="video-column">
+                        <iframe id="videoFrame6" width="560" height="315" src="https://www.youtube.com/embed/NBMH7j6gJr8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <i class="fas fa-expand-alt miniplayerIcon" onclick="toggleMiniplayer('videoFrame6')"></i>
+                        <i class="fas fa-times-circle closeIcon" onclick="exitPiP('videoFrame6')"></i>
+                        <div class="video-description">
+                            <h3 class="video-title">| நிஸ்ஃபு ஷஃபான் ஷபே பராஅத் | Tuesday Bayan Live | Nisf Shaban | Shabe Bara'ath</h3>
+                            <p class="channel-name"> MuhieddeenTV</p>
+                            <p class="metadata">1,978 views</p>
+                            <!-- Add more description elements as needed -->
+                        </div>
+                    </div>
+
+                    <div class="video-column">
+                        <iframe id="videoFrame6" width="560" height="315" src="https://www.youtube.com/embed/YsOnMXZcLTA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <i class="fas fa-expand-alt miniplayerIcon" onclick="toggleMiniplayer('videoFrame6')"></i>
+                        <i class="fas fa-times-circle closeIcon" onclick="exitPiP('videoFrame6')"></i>
+                        <div class="video-description">
+                            <h3 class="video-title">நோன்பு நிய்யத் அவசியமா ? குலப்பவாதிகளின் இருட்டடிப்பிற்கு அறிவாரந்த பதில்</h3>
+                            <p class="channel-name"> KhwajaTv.</p>
+                            <p class="metadata">1.9K views</p>
+                            <!-- Add more description elements as needed -->
+                        </div>
+                    </div>
+
+                    <div class="video-column">
+                        <iframe id="videoFrame6" width="560" height="315" src="https://www.youtube.com/embed/75JElh87f7o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <i class="fas fa-expand-alt miniplayerIcon" onclick="toggleMiniplayer('videoFrame6')"></i>
+                        <i class="fas fa-times-circle closeIcon" onclick="exitPiP('videoFrame6')"></i>
+                        <div class="video-description">
+                            <h3 class="video-title">Live | Urs Day 08 | புனித தரீக்காக்களில் நஜ்திய விஷக்கிருமிகள்</h3>
+                            <p class="channel-name"> MuhieddeenTV</p>
+                            <p class="metadata">3,567 views</p>
+                            <!-- Add more description elements as needed -->
+                        </div>
+                    </div>
                 </div>
 
                 <div class="video-row">
-                    <h2>Comedy</h2>
+                    <h2>Recitals</h2>
                     <div class="video-column">
-                        <iframe id="videoFrame7" width="560" height="315" src="https://www.youtube.com/embed/sfJOJ3jGisc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe id="videoFrame7" width="560" height="315" src="https://www.youtube.com/embed/vyrAV6UjC1M" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         <i class="fas fa-expand-alt miniplayerIcon" onclick="toggleMiniplayer('videoFrame7')"></i>
                         <i class="fas fa-times-circle closeIcon" onclick="exitPiP('videoFrame7')"></i>
+                        <div class="video-description">
+                            <h3 class="video-title">Friday Durood Salawath Salam Recital 1000 Times | Madina Shareef | ஸலாவாத் ஷரீஃப் 1000 முறை</h3>
+                            <p class="channel-name"> MuhieddeenTV</p>
+                            <p class="metadata">3,104 views</p>
+                            <!-- Add more description elements as needed -->
+                        </div>
                     </div>
                     <div class="video-column">
-                        <iframe id="videoFrame8" width="560" height="315" src="https://www.youtube.com/embed/TIuDwFLhg9k" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe id="videoFrame8" width="560" height="315" src="https://www.youtube.com/embed/5FLdJDptVsc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         <i class="fas fa-expand-alt miniplayerIcon" onclick="toggleMiniplayer('videoFrame8')"></i>
                         <i class="fas fa-times-circle closeIcon" onclick="exitPiP('videoFrame8')"></i>
+                        <div class="video-description">
+                            <h3 class="video-title">ஸலவாத் | சூரியன் ஜொலிக்கும் காலமெல்லாம் முதியோரை போற்றும் நபிகள் மீது | Salawath till sun shines</h3>
+                            <p class="channel-name"> MuhieddeenTV</p>
+                            <p class="metadata">942 views</p>
+                            <!-- Add more description elements as needed -->
+                        </div>
                     </div>
 
                     <div class="video-column">
-                        <iframe id="videoFrame9" width="560" height="315" src="https://www.youtube.com/embed/GvpDPTOalQw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe id="videoFrame9" width="560" height="315" src="https://www.youtube.com/embed/peb37556FdU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         <i class="fas fa-expand-alt miniplayerIcon" onclick="toggleMiniplayer('videoFrame9')"></i>
                         <i class="fas fa-times-circle closeIcon" onclick="exitPiP('videoFrame9')"></i>
+                        <div class="video-description">
+                            <h3 class="video-title">ஷபே பராஅத் | Shabe BaraAth By Kids</h3>
+                            <p class="channel-name"> MuhieddeenTV</p>
+                            <p class="metadata">981 views</p>
+                            <!-- Add more description elements as needed -->
+                        </div>
                     </div>
                     <i class="fas fa-chevron-right scrollIcon" onclick="toggleAdditionalVideos('right', 'videoRow3')"></i>
                     <i class="fas fa-chevron-left scrollLeftIcon" onclick="toggleAdditionalVideos('left', 'videoRow3')"></i>
+                    <div class="video-column">
+                        <iframe id="videoFrame9" width="560" height="315" src="https://www.youtube.com/embed/5h9tIoB2rxg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <i class="fas fa-expand-alt miniplayerIcon" onclick="toggleMiniplayer('videoFrame9')"></i>
+                        <i class="fas fa-times-circle closeIcon" onclick="exitPiP('videoFrame9')"></i>
+                        <div class="video-description">
+                            <h3 class="video-title">ஷஃபான் முஅழ்ழமில் 1000 ஸலவாத்கள் ஓதினால் | SubHanallah if You recite Shaban 1000 Salawath shrif</h3>
+                            <p class="channel-name"> MuhieddeenTV</p>
+                            <p class="metadata">678 views</p>
+                            <!-- Add more description elements as needed -->
+                        </div>
+                    </div>
                     <!-- Add more video columns as needed -->
+                    <div class="video-column">
+                        <iframe id="videoFrame9" width="560" height="315" src="https://www.youtube.com/embed/vNKq_H_6s2o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <i class="fas fa-expand-alt miniplayerIcon" onclick="toggleMiniplayer('videoFrame9')"></i>
+                        <i class="fas fa-times-circle closeIcon" onclick="exitPiP('videoFrame9')"></i>
+                        <div class="video-description">
+                            <h3 class="video-title">Blessed Salawath in Blessed Voice | அழகிய ஸலவாத் ஷரீஃப் ஓதல் | Jumma mubarak</h3>
+                            <p class="channel-name"> MuhieddeenTV</p>
+                            <p class="metadata">465 views</p>
+                            <!-- Add more description elements as needed -->
+                        </div>
+                    </div>
+                    <div class="video-column">
+                        <iframe id="videoFrame9" width="560" height="315" src="https://www.youtube.com/embed/WZiulIEibOE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <i class="fas fa-expand-alt miniplayerIcon" onclick="toggleMiniplayer('videoFrame9')"></i>
+                        <i class="fas fa-times-circle closeIcon" onclick="exitPiP('videoFrame9')"></i>
+                        <div class="video-description">
+                            <h3 class="video-title">அரபுத்தமிழ் - ஆர்வமாக ஓதும் சிறுவர்கள் காயல்பட்டணம் | அரபிகள் தமிழர்கள் இடையே உருவான ஒரு உறவு பாலம்</h3>
+                            <p class="channel-name"> MuhieddeenTV</p>
+                            <p class="metadata">1,391 views</p>
+                            <!-- Add more description elements as needed -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
